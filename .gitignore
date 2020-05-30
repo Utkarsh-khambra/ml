@@ -30,6 +30,6 @@
 *.exe
 *.out
 *.app
-build
-.clangd
+build/
+.clangd/
 .tasks
