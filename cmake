@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(plot)
+find_package(Python3 COMPONENTS Development NumPy)
+add_executable(test test.cpp)
+target_include_directories(test PRIVATE ${Python3_INCLUDE_DIRS} ${Python3_NumPy_INCLUDE_DIRS})
+target_link_libraries(test Python3::Python Python3::NumPy)

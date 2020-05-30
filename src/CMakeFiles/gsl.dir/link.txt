@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/gsl.dir/test/test_matrix.cpp.o CMakeFiles/gsl.dir/test/main.cpp.o  -o gsl  /usr/lib64/libgsl.so /usr/lib64/libgslcblas.so 

@@ -1,0 +1,29 @@
+# vim: set fenc=utf-8 ft=dosini:
+[project-init]
+command=mkdir build && cd build && cmake .. && cd .. && ln -s build/compile_commands.json
+cwd=<root>
+errorformat=
+# define a new task named "file-build"
+[project-build]
+
+# shell command, use quotation for filenames containing spaces
+# check ":AsyncTaskMacro" to see available macros
+command=cmake --build build
+# working directory, can change to $(VIM_ROOT) for project root
+cwd=<root>
+
+# output mode, can be one of quickfix and terminal
+# - quickfix: output to quickfix window
+# - terminal: run the command in the internal terminal
+output=terminal
+
+# this is for output=quickfix only
+# if it is omitted, vim's current errorformat will be used.
+errorformat=%f:%l:%m
+
+# save file before execute
+[project-run]
+command="build/$(VIM_PRONAME)"
+cwd=<root>
+output=terminal
+
