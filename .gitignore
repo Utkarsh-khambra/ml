@@ -33,3 +33,4 @@
 build/
 .clangd/
 .tasks
+compile_commands.json

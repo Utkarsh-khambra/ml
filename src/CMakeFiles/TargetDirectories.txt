@@ -1,3 +1,0 @@
-/home/utkarsh/Dropbox/gsl/src/CMakeFiles/rebuild_cache.dir
-/home/utkarsh/Dropbox/gsl/src/CMakeFiles/edit_cache.dir
-/home/utkarsh/Dropbox/gsl/src/CMakeFiles/gsl.dir

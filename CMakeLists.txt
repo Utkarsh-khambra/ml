@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
 project(gsl)
-set(SRC "test/test_matrix.cpp" "test/main.cpp") 
+set(SRC "test/test_matrix.cpp" "test/main.cpp" "test/test_vector.cpp" "test/test_matrix_view.cpp" "test/test_opr.cpp" "test/test_vector_view.cpp") 
 # set(SRC "test/test_vector.cpp" "test/test_opr.cpp" "test/test_matrix_view.cpp")
  # set(SRC "regression/regor.cpp")
 # set(SRC  "test.cpp")

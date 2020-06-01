@@ -154,31 +154,29 @@ TEMPLATE_TEST_CASE("MinMax operations", "", int, unsigned int, long,
   REQUIRE(min_index == m.min_index());
 }
 
-/* TEMPLATE_TEST_CASE("Matrix Row extraction", "", int, unsigned int, long, */
-/*                    unsigned long, float, double) { */
-/*   auto r1 = generate_random_seq<TestType>(10000); */
-/*   gsl::matrix<TestType> m(r1.begin(), r1.end(), 100); */
-/*   for (size_t i = 0; i < m.num_rows(); ++i) { */
-/*     auto row = m.get_row(i); */
-/*     auto row_itr_start = m.begin() + i * m.num_cols(); */
-/*     auto row_itr_end = row_itr_start + m.num_cols(); */
-/*     REQUIRE((size_t)std::distance(row_itr_start, row_itr_end) ==
- * row.length()); */
-/*     REQUIRE(std::equal(row_itr_start, row_itr_end, row.begin())); */
-/*   } */
-/* } */
-/* TEMPLATE_TEST_CASE("Matrix Col extraction", "", int, unsigned int, long, */
-/*                    unsigned long, float, double) { */
-/*   /1* auto r1 = generate_random_seq<TestType>(10000); *1/ */
-/*   auto r1 = std::vector<TestType>(10000); */
-/*   std::iota(r1.begin(), r1.end(), (TestType)0); */
-/*   gsl::matrix<TestType> m(r1.begin(), r1.end(), 100); */
-/*   for (size_t i = 0; i < m.num_cols(); ++i) { */
-/*     auto col = m.get_col(i); */
-/*     REQUIRE(col.length() == m.num_rows()); */
-/*     auto start = m.begin() + i; */
-/*     for (size_t j = 0; j < m.num_rows(); ++j) { */
-/*       REQUIRE(*(col.begin() + j) == *(start + j * m.num_cols())); */
-/*     } */
-/*   } */
-/* } */
+TEMPLATE_TEST_CASE("Matrix Row extraction", "", int, unsigned int, long,
+                   unsigned long, float, double) {
+  auto r1 = generate_random_seq<TestType>(10000);
+  gsl::matrix<TestType> m(r1.begin(), r1.end(), 100);
+  for (size_t i = 0; i < m.num_rows(); ++i) {
+    auto row = m.get_row(i);
+    auto row_itr_start = m.begin() + i * m.num_cols();
+    auto row_itr_end = row_itr_start + m.num_cols();
+    REQUIRE((size_t)std::distance(row_itr_start, row_itr_end) == row.length());
+    REQUIRE(std::equal(row_itr_start, row_itr_end, row.begin()));
+  }
+}
+TEMPLATE_TEST_CASE("Matrix Col extraction", "", int, unsigned int, long,
+                   unsigned long, float, double) {
+  auto r1 = generate_random_seq<TestType>(10000);
+  std::iota(r1.begin(), r1.end(), (TestType)0);
+  gsl::matrix<TestType> m(r1.begin(), r1.end(), 100);
+  for (size_t i = 0; i < m.num_cols(); ++i) {
+    auto col = m.get_col(i);
+    REQUIRE(col.length() == m.num_rows());
+    auto start = m.begin() + i;
+    for (size_t j = 0; j < m.num_rows(); ++j) {
+      REQUIRE(*(col.begin() + j) == *(start + j * m.num_cols()));
+    }
+  }
+}

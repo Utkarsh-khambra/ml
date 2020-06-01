@@ -29,7 +29,7 @@ TEMPLATE_TEST_CASE("Vector View Test", "", int, unsigned int, long,
   auto j = m.make_view(0, 100);
   auto k = m.make_view(22, 3012);
   REQUIRE(j.length() == 100);
-  REQUIRE(k.length() == 3012 - 22);
+  REQUIRE(k.length() == 3012);
 }
 
 TEMPLATE_TEST_CASE("Vector View Copy Test", "", int, unsigned int, long,

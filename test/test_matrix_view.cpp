@@ -36,6 +36,8 @@ TEMPLATE_TEST_CASE("Matrix View Copy Test", "", int, unsigned int, long,
   auto r1 = generate_random_seq<TestType>(10000);
   gsl::matrix<TestType> m(r1.begin(), r1.end(), 100);
   auto i = m.make_view(0, 0, 10, 10);
+  REQUIRE(i.num_cols() == 10);
+  REQUIRE(i.num_rows() == 10);
   auto j(i);
   REQUIRE(i.shape() == j.shape());
   REQUIRE(std::equal(i.begin(), i.end(), j.begin()));
@@ -116,6 +118,6 @@ TEMPLATE_TEST_CASE("Matrix View Col", "[]", int, unsigned int, long,
   for (size_t i = 0; i < m.num_cols(); ++i) {
     auto n = m.col_view(i);
     auto p = m.get_col(i);
-    REQUIRE(std::equal(n.begin(), n.end(), p.begin()));
+    REQUIRE(std::equal(n.cbegin(), n.cend(), p.begin()));
   }
 }

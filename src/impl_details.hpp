@@ -1,4 +1,3 @@
-
 #pragma once
 #include <gsl/gsl_matrix.h>
 #include <gsl/gsl_vector.h>
@@ -19,7 +18,7 @@ public:
   constexpr static auto allocate = [](size_t size) noexcept {
     return gsl_vector_char_alloc(size);
   };
-  constexpr static auto deallocate = [](type *vec) noexcept {
+  constexpr static auto free = [](type *vec) noexcept {
     return gsl_vector_char_free(vec);
   };
   constexpr static auto calloc = [](size_t size) noexcept {
@@ -151,7 +150,7 @@ public:
   constexpr static auto allocate = [](size_t size) noexcept {
     return gsl_vector_uchar_alloc(size);
   };
-  constexpr static auto deallocate = [](type *vec) noexcept {
+  constexpr static auto free = [](type *vec) noexcept {
     return gsl_vector_uchar_free(vec);
   };
   constexpr static auto calloc = [](size_t size) noexcept {
@@ -284,7 +283,7 @@ public:
   constexpr static auto allocate = [](size_t size) noexcept {
     return gsl_vector_short_alloc(size);
   };
-  constexpr static auto deallocate = [](type *vec) noexcept {
+  constexpr static auto free = [](type *vec) noexcept {
     return gsl_vector_short_free(vec);
   };
   constexpr static auto calloc = [](size_t size) noexcept {
@@ -417,7 +416,7 @@ public:
   constexpr static auto allocate = [](size_t size) noexcept {
     return gsl_vector_ushort_alloc(size);
   };
-  constexpr static auto deallocate = [](type *vec) noexcept {
+  constexpr static auto free = [](type *vec) noexcept {
     return gsl_vector_ushort_free(vec);
   };
   constexpr static auto calloc = [](size_t size) noexcept {
@@ -550,7 +549,7 @@ public:
   constexpr static auto allocate = [](size_t size) noexcept {
     return gsl_vector_int_alloc(size);
   };
-  constexpr static auto deallocate = [](type *vec) noexcept {
+  constexpr static auto free = [](type *vec) noexcept {
     return gsl_vector_int_free(vec);
   };
   constexpr static auto calloc = [](size_t size) noexcept {
@@ -683,7 +682,7 @@ public:
   constexpr static auto allocate = [](size_t size) noexcept {
     return gsl_vector_uint_alloc(size);
   };
-  constexpr static auto deallocate = [](type *vec) noexcept {
+  constexpr static auto free = [](type *vec) noexcept {
     return gsl_vector_uint_free(vec);
   };
   constexpr static auto calloc = [](size_t size) noexcept {
@@ -816,7 +815,7 @@ public:
   constexpr static auto allocate = [](size_t size) noexcept {
     return gsl_vector_long_alloc(size);
   };
-  constexpr static auto deallocate = [](type *vec) noexcept {
+  constexpr static auto free = [](type *vec) noexcept {
     return gsl_vector_long_free(vec);
   };
   constexpr static auto calloc = [](size_t size) noexcept {
@@ -949,7 +948,7 @@ public:
   constexpr static auto allocate = [](size_t size) noexcept {
     return gsl_vector_ulong_alloc(size);
   };
-  constexpr static auto deallocate = [](type *vec) noexcept {
+  constexpr static auto free = [](type *vec) noexcept {
     return gsl_vector_ulong_free(vec);
   };
   constexpr static auto calloc = [](size_t size) noexcept {
@@ -1082,7 +1081,7 @@ public:
   constexpr static auto allocate = [](size_t size) noexcept {
     return gsl_vector_float_alloc(size);
   };
-  constexpr static auto deallocate = [](type *vec) noexcept {
+  constexpr static auto free = [](type *vec) noexcept {
     return gsl_vector_float_free(vec);
   };
   constexpr static auto calloc = [](size_t size) noexcept {
@@ -1215,7 +1214,7 @@ public:
   constexpr static auto allocate = [](size_t size) noexcept {
     return gsl_vector_alloc(size);
   };
-  constexpr static auto deallocate = [](type *vec) noexcept {
+  constexpr static auto free = [](type *vec) noexcept {
     return gsl_vector_free(vec);
   };
   constexpr static auto calloc = [](size_t size) noexcept {
@@ -1348,7 +1347,7 @@ public:
   constexpr static auto allocate = [](size_t size) noexcept {
     return gsl_vector_long_double_alloc(size);
   };
-  constexpr static auto deallocate = [](type *vec) noexcept {
+  constexpr static auto free = [](type *vec) noexcept {
     return gsl_vector_long_double_free(vec);
   };
   constexpr static auto calloc = [](size_t size) noexcept {

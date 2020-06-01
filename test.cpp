@@ -1,11 +1,9 @@
-#include "src/matrix_impl.hpp"
+#include "src/matrix.hpp"
 #include <iostream>
 #include <type_traits>
-using namespace gsl::details;
+using namespace gsl;
 int main() {
-  matrix_impl<int, false> a(
-      {78, 41, 25, 346, 478, 145, 478, 12, -78, 12, 78, 13, 24, 45, 78, 45}, 4);
-  a.print();
-  a = 2 * a;
-  a.print();
+  matrix<int> a({7, 8, 9, 14, 46, 32, 47, 458, 123}, 3);
+  auto b = a.row_view(2);
+  b.print(100);
 }
