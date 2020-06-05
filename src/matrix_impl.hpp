@@ -208,6 +208,25 @@ public:
   auto shape() const noexcept { return std::make_pair(num_rows(), num_cols()); }
   size_t num_rows() const noexcept { return mat_ptr()->size1; }
   size_t num_cols() const noexcept { return mat_ptr()->size2; }
+  void set_all(T val) noexcept { base::set_all(mat_ptr(), val); }
+  void set(size_t i, size_t j, T val) noexcept {
+    base::set(mat_ptr(), i, j, val);
+  }
+  // TODO Change to make vector const
+  void set_col(size_t i, std::vector<T> &col) {
+    vector_impl<T, true> view(col.data(), col.size());
+    auto result = base::set_col(mat_ptr(), i, view.get_vector());
+    if (result)
+      handle_exception(result);
+  }
+  void set_col(size_t i, vector_impl<T, true> &col) {
+    auto result = base::set_col(mat_ptr(), i, col.get_vector());
+    if (result)
+      handle_exception(result);
+  }
+  void set_col(size_t i, vector_impl<T, false> &col) {
+    base::set_col(mat_ptr(), i, col.get_vector());
+  }
   iterator begin() noexcept {
     if constexpr (IsView)
       return iterator(mat_ptr(), 0, 0);
@@ -256,18 +275,21 @@ public:
   }
   vector_impl<T, false> get_row(size_t row) const {
     vector_impl<T, false> ret(num_cols());
-    base::get_row(ret.get_vector(), mat_ptr(), row);
+    auto result = base::get_row(ret.get_vector(), mat_ptr(), row);
+    if (result)
+      handle_exception(result);
     return ret;
   }
 
   vector_impl<T, false> get_col(size_t col) const {
     vector_impl<T, false> ret(num_rows());
-    base::get_col(ret.get_vector(), mat_ptr(), col);
+    auto result = base::get_col(ret.get_vector(), mat_ptr(), col);
+    if (result)
+      handle_exception(result);
     return ret;
   }
   void print() const noexcept {
     size_t row = 0;
-    auto ptr = mat_ptr();
     for (auto i = cbegin(); i != cend(); i += num_cols()) {
       std::cout << "Row: " << row << " >> ";
       std::copy(i, i + num_cols(), std::ostream_iterator<T>(std::cout, " "));
@@ -280,15 +302,28 @@ public:
     if (rows > num_rows())
       rows = num_rows();
     size_t row = 0;
-    auto ptr = mat_ptr();
-    for (auto i = cbegin(); i != cend(); i += num_cols()) {
+    for (auto i = cbegin(); i != cbegin() + rows * num_cols();
+         i += num_cols()) {
       std::cout << "Row: " << row << " >> ";
       std::copy(i, i + num_cols(), std::ostream_iterator<T>(std::cout, " "));
       std::cout << '\n';
       ++row;
     }
   }
-
+  void save(std::string file_name) {
+    std::FILE *file = std::fopen(file_name.c_str(), "w");
+    auto result = base::fwrite(file, mat_ptr());
+    std::fclose(file);
+    if (result)
+      handle_exception(result);
+  }
+  void load(std::string file_name) {
+    auto file = std::fopen(file_name.c_str(), "r");
+    auto result = base::fread(file, mat_ptr());
+    std::fclose(file);
+    if (result)
+      handle_exception(result);
+  }
   auto make_view(size_t start_p, size_t start_q, size_t rows, size_t cols) {
     auto ret = base::submatrix(mat_ptr(), start_p, start_q, rows, cols);
     return matrix_impl<T, true>(ret);

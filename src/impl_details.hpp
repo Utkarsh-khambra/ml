@@ -42,10 +42,10 @@ public:
   constexpr static auto set_baseic = [](ptr vec, size_t row) noexcept {
     return gsl_vector_char_set_basis(vec, row);
   };
-  constexpr static auto fwrite = [](FILE *stream, const ptr vec) noexcept {
+  constexpr static auto fwrite = [](std::FILE *stream, const ptr vec) noexcept {
     return gsl_vector_char_fwrite(stream, vec);
   };
-  constexpr static auto fread = [](FILE *stream, ptr vec) noexcept {
+  constexpr static auto fread = [](std::FILE *stream, ptr vec) noexcept {
     return gsl_vector_char_fread(stream, vec);
   };
   constexpr static auto subvector = [](ptr vec, size_t offset,
@@ -174,10 +174,10 @@ public:
   constexpr static auto set_baseic = [](ptr vec, size_t row) noexcept {
     return gsl_vector_uchar_set_basis(vec, row);
   };
-  constexpr static auto fwrite = [](FILE *stream, const ptr vec) noexcept {
+  constexpr static auto fwrite = [](std::FILE *stream, const ptr vec) noexcept {
     return gsl_vector_uchar_fwrite(stream, vec);
   };
-  constexpr static auto fread = [](FILE *stream, ptr vec) noexcept {
+  constexpr static auto fread = [](std::FILE *stream, ptr vec) noexcept {
     return gsl_vector_uchar_fread(stream, vec);
   };
   constexpr static auto subvector = [](ptr vec, size_t offset,
@@ -307,10 +307,10 @@ public:
   constexpr static auto set_baseic = [](ptr vec, size_t row) noexcept {
     return gsl_vector_short_set_basis(vec, row);
   };
-  constexpr static auto fwrite = [](FILE *stream, const ptr vec) noexcept {
+  constexpr static auto fwrite = [](std::FILE *stream, const ptr vec) noexcept {
     return gsl_vector_short_fwrite(stream, vec);
   };
-  constexpr static auto fread = [](FILE *stream, ptr vec) noexcept {
+  constexpr static auto fread = [](std::FILE *stream, ptr vec) noexcept {
     return gsl_vector_short_fread(stream, vec);
   };
   constexpr static auto subvector = [](ptr vec, size_t offset,
@@ -440,10 +440,10 @@ public:
   constexpr static auto set_baseic = [](ptr vec, size_t row) noexcept {
     return gsl_vector_ushort_set_basis(vec, row);
   };
-  constexpr static auto fwrite = [](FILE *stream, const ptr vec) noexcept {
+  constexpr static auto fwrite = [](std::FILE *stream, const ptr vec) noexcept {
     return gsl_vector_ushort_fwrite(stream, vec);
   };
-  constexpr static auto fread = [](FILE *stream, ptr vec) noexcept {
+  constexpr static auto fread = [](std::FILE *stream, ptr vec) noexcept {
     return gsl_vector_ushort_fread(stream, vec);
   };
   constexpr static auto subvector = [](ptr vec, size_t offset,
@@ -573,10 +573,10 @@ public:
   constexpr static auto set_baseic = [](ptr vec, size_t row) noexcept {
     return gsl_vector_int_set_basis(vec, row);
   };
-  constexpr static auto fwrite = [](FILE *stream, const ptr vec) noexcept {
+  constexpr static auto fwrite = [](std::FILE *stream, const ptr vec) noexcept {
     return gsl_vector_int_fwrite(stream, vec);
   };
-  constexpr static auto fread = [](FILE *stream, ptr vec) noexcept {
+  constexpr static auto fread = [](std::FILE *stream, ptr vec) noexcept {
     return gsl_vector_int_fread(stream, vec);
   };
   constexpr static auto subvector = [](ptr vec, size_t offset,
@@ -706,10 +706,10 @@ public:
   constexpr static auto set_baseic = [](ptr vec, size_t row) noexcept {
     return gsl_vector_uint_set_basis(vec, row);
   };
-  constexpr static auto fwrite = [](FILE *stream, const ptr vec) noexcept {
+  constexpr static auto fwrite = [](std::FILE *stream, const ptr vec) noexcept {
     return gsl_vector_uint_fwrite(stream, vec);
   };
-  constexpr static auto fread = [](FILE *stream, ptr vec) noexcept {
+  constexpr static auto fread = [](std::FILE *stream, ptr vec) noexcept {
     return gsl_vector_uint_fread(stream, vec);
   };
   constexpr static auto subvector = [](ptr vec, size_t offset,
@@ -839,10 +839,10 @@ public:
   constexpr static auto set_baseic = [](ptr vec, size_t row) noexcept {
     return gsl_vector_long_set_basis(vec, row);
   };
-  constexpr static auto fwrite = [](FILE *stream, const ptr vec) noexcept {
+  constexpr static auto fwrite = [](std::FILE *stream, const ptr vec) noexcept {
     return gsl_vector_long_fwrite(stream, vec);
   };
-  constexpr static auto fread = [](FILE *stream, ptr vec) noexcept {
+  constexpr static auto fread = [](std::FILE *stream, ptr vec) noexcept {
     return gsl_vector_long_fread(stream, vec);
   };
   constexpr static auto subvector = [](ptr vec, size_t offset,
@@ -972,10 +972,10 @@ public:
   constexpr static auto set_baseic = [](ptr vec, size_t row) noexcept {
     return gsl_vector_ulong_set_basis(vec, row);
   };
-  constexpr static auto fwrite = [](FILE *stream, const ptr vec) noexcept {
+  constexpr static auto fwrite = [](std::FILE *stream, const ptr vec) noexcept {
     return gsl_vector_ulong_fwrite(stream, vec);
   };
-  constexpr static auto fread = [](FILE *stream, ptr vec) noexcept {
+  constexpr static auto fread = [](std::FILE *stream, ptr vec) noexcept {
     return gsl_vector_ulong_fread(stream, vec);
   };
   constexpr static auto subvector = [](ptr vec, size_t offset,
@@ -1105,10 +1105,10 @@ public:
   constexpr static auto set_baseic = [](ptr vec, size_t row) noexcept {
     return gsl_vector_float_set_basis(vec, row);
   };
-  constexpr static auto fwrite = [](FILE *stream, const ptr vec) noexcept {
+  constexpr static auto fwrite = [](std::FILE *stream, const ptr vec) noexcept {
     return gsl_vector_float_fwrite(stream, vec);
   };
-  constexpr static auto fread = [](FILE *stream, ptr vec) noexcept {
+  constexpr static auto fread = [](std::FILE *stream, ptr vec) noexcept {
     return gsl_vector_float_fread(stream, vec);
   };
   constexpr static auto subvector = [](ptr vec, size_t offset,
@@ -1238,10 +1238,10 @@ public:
   constexpr static auto set_baseic = [](ptr vec, size_t row) noexcept {
     return gsl_vector_set_basis(vec, row);
   };
-  constexpr static auto fwrite = [](FILE *stream, const ptr vec) noexcept {
+  constexpr static auto fwrite = [](std::FILE *stream, const ptr vec) noexcept {
     return gsl_vector_fwrite(stream, vec);
   };
-  constexpr static auto fread = [](FILE *stream, ptr vec) noexcept {
+  constexpr static auto fread = [](std::FILE *stream, ptr vec) noexcept {
     return gsl_vector_fread(stream, vec);
   };
   constexpr static auto subvector = [](ptr vec, size_t offset,
@@ -1371,10 +1371,10 @@ public:
   constexpr static auto set_baseic = [](ptr vec, size_t row) noexcept {
     return gsl_vector_long_double_set_basis(vec, row);
   };
-  constexpr static auto fwrite = [](FILE *stream, const ptr vec) noexcept {
+  constexpr static auto fwrite = [](std::FILE *stream, const ptr vec) noexcept {
     return gsl_vector_long_double_fwrite(stream, vec);
   };
-  constexpr static auto fread = [](FILE *stream, ptr vec) noexcept {
+  constexpr static auto fread = [](std::FILE *stream, ptr vec) noexcept {
     return gsl_vector_long_double_fread(stream, vec);
   };
   constexpr static auto subvector = [](ptr vec, size_t offset,
@@ -1510,10 +1510,10 @@ public:
   constexpr static auto identity = [](ptr mat) noexcept {
     gsl_matrix_char_set_identity(mat);
   };
-  constexpr static auto fwrite = [](FILE *file, const ptr mat) noexcept {
+  constexpr static auto fwrite = [](std::FILE *file, const ptr mat) noexcept {
     return gsl_matrix_char_fwrite(file, mat);
   };
-  constexpr static auto fread = [](FILE *file, ptr mat) noexcept {
+  constexpr static auto fread = [](std::FILE *file, ptr mat) noexcept {
     return gsl_matrix_char_fread(file, mat);
   };
   constexpr static auto submatrix = [](ptr mat, size_t p1, size_t p2, size_t k1,
@@ -1693,10 +1693,10 @@ public:
   constexpr static auto identity = [](ptr mat) noexcept {
     gsl_matrix_uchar_set_identity(mat);
   };
-  constexpr static auto fwrite = [](FILE *file, const ptr mat) noexcept {
+  constexpr static auto fwrite = [](std::FILE *file, const ptr mat) noexcept {
     return gsl_matrix_uchar_fwrite(file, mat);
   };
-  constexpr static auto fread = [](FILE *file, ptr mat) noexcept {
+  constexpr static auto fread = [](std::FILE *file, ptr mat) noexcept {
     return gsl_matrix_uchar_fread(file, mat);
   };
   constexpr static auto submatrix = [](ptr mat, size_t p1, size_t p2, size_t k1,
@@ -1876,10 +1876,10 @@ public:
   constexpr static auto identity = [](ptr mat) noexcept {
     gsl_matrix_short_set_identity(mat);
   };
-  constexpr static auto fwrite = [](FILE *file, const ptr mat) noexcept {
+  constexpr static auto fwrite = [](std::FILE *file, const ptr mat) noexcept {
     return gsl_matrix_short_fwrite(file, mat);
   };
-  constexpr static auto fread = [](FILE *file, ptr mat) noexcept {
+  constexpr static auto fread = [](std::FILE *file, ptr mat) noexcept {
     return gsl_matrix_short_fread(file, mat);
   };
   constexpr static auto submatrix = [](ptr mat, size_t p1, size_t p2, size_t k1,
@@ -2059,10 +2059,10 @@ public:
   constexpr static auto identity = [](ptr mat) noexcept {
     gsl_matrix_ushort_set_identity(mat);
   };
-  constexpr static auto fwrite = [](FILE *file, const ptr mat) noexcept {
+  constexpr static auto fwrite = [](std::FILE *file, const ptr mat) noexcept {
     return gsl_matrix_ushort_fwrite(file, mat);
   };
-  constexpr static auto fread = [](FILE *file, ptr mat) noexcept {
+  constexpr static auto fread = [](std::FILE *file, ptr mat) noexcept {
     return gsl_matrix_ushort_fread(file, mat);
   };
   constexpr static auto submatrix = [](ptr mat, size_t p1, size_t p2, size_t k1,
@@ -2242,10 +2242,10 @@ public:
   constexpr static auto identity = [](ptr mat) noexcept {
     gsl_matrix_int_set_identity(mat);
   };
-  constexpr static auto fwrite = [](FILE *file, const ptr mat) noexcept {
+  constexpr static auto fwrite = [](std::FILE *file, const ptr mat) noexcept {
     return gsl_matrix_int_fwrite(file, mat);
   };
-  constexpr static auto fread = [](FILE *file, ptr mat) noexcept {
+  constexpr static auto fread = [](std::FILE *file, ptr mat) noexcept {
     return gsl_matrix_int_fread(file, mat);
   };
   constexpr static auto submatrix = [](ptr mat, size_t p1, size_t p2, size_t k1,
@@ -2425,10 +2425,10 @@ public:
   constexpr static auto identity = [](ptr mat) noexcept {
     gsl_matrix_uint_set_identity(mat);
   };
-  constexpr static auto fwrite = [](FILE *file, const ptr mat) noexcept {
+  constexpr static auto fwrite = [](std::FILE *file, const ptr mat) noexcept {
     return gsl_matrix_uint_fwrite(file, mat);
   };
-  constexpr static auto fread = [](FILE *file, ptr mat) noexcept {
+  constexpr static auto fread = [](std::FILE *file, ptr mat) noexcept {
     return gsl_matrix_uint_fread(file, mat);
   };
   constexpr static auto submatrix = [](ptr mat, size_t p1, size_t p2, size_t k1,
@@ -2608,10 +2608,10 @@ public:
   constexpr static auto identity = [](ptr mat) noexcept {
     gsl_matrix_long_set_identity(mat);
   };
-  constexpr static auto fwrite = [](FILE *file, const ptr mat) noexcept {
+  constexpr static auto fwrite = [](std::FILE *file, const ptr mat) noexcept {
     return gsl_matrix_long_fwrite(file, mat);
   };
-  constexpr static auto fread = [](FILE *file, ptr mat) noexcept {
+  constexpr static auto fread = [](std::FILE *file, ptr mat) noexcept {
     return gsl_matrix_long_fread(file, mat);
   };
   constexpr static auto submatrix = [](ptr mat, size_t p1, size_t p2, size_t k1,
@@ -2791,10 +2791,10 @@ public:
   constexpr static auto identity = [](ptr mat) noexcept {
     gsl_matrix_ulong_set_identity(mat);
   };
-  constexpr static auto fwrite = [](FILE *file, const ptr mat) noexcept {
+  constexpr static auto fwrite = [](std::FILE *file, const ptr mat) noexcept {
     return gsl_matrix_ulong_fwrite(file, mat);
   };
-  constexpr static auto fread = [](FILE *file, ptr mat) noexcept {
+  constexpr static auto fread = [](std::FILE *file, ptr mat) noexcept {
     return gsl_matrix_ulong_fread(file, mat);
   };
   constexpr static auto submatrix = [](ptr mat, size_t p1, size_t p2, size_t k1,
@@ -2974,10 +2974,10 @@ public:
   constexpr static auto identity = [](ptr mat) noexcept {
     gsl_matrix_float_set_identity(mat);
   };
-  constexpr static auto fwrite = [](FILE *file, const ptr mat) noexcept {
+  constexpr static auto fwrite = [](std::FILE *file, const ptr mat) noexcept {
     return gsl_matrix_float_fwrite(file, mat);
   };
-  constexpr static auto fread = [](FILE *file, ptr mat) noexcept {
+  constexpr static auto fread = [](std::FILE *file, ptr mat) noexcept {
     return gsl_matrix_float_fread(file, mat);
   };
   constexpr static auto submatrix = [](ptr mat, size_t p1, size_t p2, size_t k1,
@@ -3155,10 +3155,10 @@ public:
   constexpr static auto identity = [](ptr mat) noexcept {
     gsl_matrix_set_identity(mat);
   };
-  constexpr static auto fwrite = [](FILE *file, const ptr mat) noexcept {
+  constexpr static auto fwrite = [](std::FILE *file, const ptr mat) noexcept {
     return gsl_matrix_fwrite(file, mat);
   };
-  constexpr static auto fread = [](FILE *file, ptr mat) noexcept {
+  constexpr static auto fread = [](std::FILE *file, ptr mat) noexcept {
     return gsl_matrix_fread(file, mat);
   };
   constexpr static auto submatrix = [](ptr mat, size_t p1, size_t p2, size_t k1,
@@ -3338,10 +3338,10 @@ public:
   constexpr static auto identity = [](ptr mat) noexcept {
     gsl_matrix_long_double_set_identity(mat);
   };
-  constexpr static auto fwrite = [](FILE *file, const ptr mat) noexcept {
+  constexpr static auto fwrite = [](std::FILE *file, const ptr mat) noexcept {
     return gsl_matrix_long_double_fwrite(file, mat);
   };
-  constexpr static auto fread = [](FILE *file, ptr mat) noexcept {
+  constexpr static auto fread = [](std::FILE *file, ptr mat) noexcept {
     return gsl_matrix_long_double_fread(file, mat);
   };
   constexpr static auto submatrix = [](ptr mat, size_t p1, size_t p2, size_t k1,

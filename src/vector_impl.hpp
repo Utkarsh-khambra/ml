@@ -45,6 +45,10 @@ public:
     return *this;
   }
 
+  vector_impl(const T *data, size_t size) requires(IsView)
+      : vector(base::view_array(data, size)) {}
+  vector_impl(T *data, size_t size) requires(IsView)
+      : vector(base::view_array(data, size)) {}
   // Iterators
   class Iterator : public std::iterator<std::random_access_iterator_tag, T, T,
                                         const T *, T> {
@@ -142,9 +146,10 @@ public:
 
   // Operators
 
+  // TODO Remove const cast
   T &operator[](size_t row) noexcept { return *base::get_ptr(vec_ptr(), row); }
   const T &operator[](size_t row) const noexcept {
-    return *base::get_ptr(vec_ptr(), row);
+    return *base::get_ptr(const_cast<vector_type *>(vec_ptr()), row);
   }
   vector_impl operator+(const vector_impl &other) const {
     assert(other.shape() == shape());
@@ -173,6 +178,14 @@ public:
     return ret;
   }
 
+  template <typename R>
+  requires(std::is_arithmetic_v<R>) auto
+  operator-(const vector_impl<R, false> &other) const {
+    vector_impl<std::common_type_t<T, R>, false> ret(other.length());
+    std::transform(begin(), end(), other.begin(), ret.begin(),
+                   [](const T a, const R b) { return a - b; });
+    return ret;
+  }
   vector_impl operator-(const T value) const {
     auto ret(*this);
     auto result = base::add_constant(ret.vec_ptr(), -value);
@@ -203,6 +216,16 @@ public:
       handle_exception(result);
     return ret;
   }
+
+  template <typename R>
+  requires(std::is_arithmetic_v<R>) auto
+  operator*(const vector_impl<R, false> &a) {
+    vector_impl<std::common_type_t<T, R>, false> ret(a.length());
+    std::transform(a.begin(), a.end(), begin(), ret.begin(),
+                   [](const R a, const T b) { return a * b; });
+    return ret;
+  }
+
   vector_impl operator/(const vector_impl &other) const {
     assert(shape() == other.shape());
     auto ret(*this);
@@ -223,6 +246,20 @@ public:
   auto get_vector() noexcept { return vec_ptr(); }
   auto shape() const noexcept { return std::make_pair(length(), 1); }
   size_t length() const noexcept { return vec_ptr()->size; }
+  void save(std::string file) {
+    std::FILE *f = fopen(file.c_str(), "w");
+    auto result = base::fwrite(f, vec_ptr());
+    std::fclose(f);
+    if (result)
+      handle_exception(result);
+  }
+  void load(std::string file) {
+    std::FILE *f = fopen(file.c_str(), "r");
+    auto result = base::fread(f, vec_ptr());
+    std::fclose(f);
+    if (result)
+      handle_exception(result);
+  }
   iterator begin() noexcept {
     if constexpr (IsView)
       return iterator(vec_ptr(), 0);
@@ -260,8 +297,9 @@ public:
 
   void print(size_t rows) const noexcept {
     if (rows > length())
-      std::copy(cbegin(), cbegin() + rows,
-                std::ostream_iterator<T>(std::cout, "\n"));
+      rows = length();
+    std::copy(cbegin(), cbegin() + rows,
+              std::ostream_iterator<T>(std::cout, "\n"));
   }
   auto make_view(size_t offset = 0, size_t n = 0) {
     if (!n)
@@ -269,6 +307,8 @@ public:
     auto ret = base::subvector(vec_ptr(), offset, n);
     return vector_impl<T, true>(ret);
   }
+
+  void set_all(T val) { base::set_all(vec_ptr(), val); }
 
 private:
   std::conditional_t<IsView, vector_view_type, uptr> vector;

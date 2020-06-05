@@ -1,3 +1,6 @@
 [submodule "Catch2"]
 	path = Catch2
 	url = https://github.com/catchorg/Catch2.git
+[submodule "rapidcsv"]
+	path = rapidcsv
+	url = https://github.com/d99kris/rapidcsv.git

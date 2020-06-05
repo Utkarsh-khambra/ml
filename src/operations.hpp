@@ -31,6 +31,14 @@ requires(std::is_arithmetic_v<T>) T
     return std::inner_product(a.cbegin(), a.cend(), b.cbegin(), (T)0);
   return ret;
 }
+template <typename T, typename R>
+requires(std::conjunction_v<std::is_arithmetic<T>,
+                            std::is_arithmetic<R>>) auto dot(const vector<T> &a,
+                                                             const vector<R>
+                                                                 &b) noexcept {
+  return std::inner_product(a.cbegin(), a.cend(), b.cbegin(),
+                            (std::common_type_t<T, R>)0);
+}
 template <typename T>
 requires(std::is_arithmetic_v<T>) T norm2(const vector<T> &a) noexcept {
   T ret;
@@ -51,9 +59,26 @@ requires(std::is_arithmetic_v<T> &&std::is_floating_point_v<T>) auto dot(
   if constexpr (std::is_same_v<T, float>)
     gsl_blas_sgemv(CblasNoTrans, 1, mat.get_matrix(), vec.get_vector(), 0,
                    ret.get_vector());
-  else
+  if constexpr (std::is_same_v<T, double>)
     gsl_blas_dgemv(CblasNoTrans, 1, mat.get_matrix(), vec.get_vector(), 0,
                    ret.get_vector());
+  else {
+    return dot<T, T>(mat, vec);
+  }
+  return ret;
+}
+
+template <typename T, typename R>
+requires(
+    std::conjunction_v<std::is_arithmetic<T>,
+                       std::is_arithmetic<R>>) auto dot(const matrix<T> &mat,
+                                                        const vector<R> &vec) {
+  vector<std::common_type_t<T, R>> ret(mat.num_rows());
+  for (size_t i = 0; i < mat.num_rows(); ++i) {
+    auto row = mat.get_row(i);
+    ret[i] = std::inner_product(vec.begin(), vec.end(), row.begin(),
+                                (std::common_type_t<T, R>)0);
+  }
   return ret;
 }
 } // namespace gsl
